@@ -17,8 +17,8 @@ The following source configuration file will sync all data points for `mywebsite
 ```yaml
 kind: source
 spec:
-  name: "simple-analytics"
-  path: "simpleanalytics/simple-analytics"
+  name: "simpleanalytics"
+  path: "simpleanalytics/simpleanalytics"
   version: "${VERSION}"
   # backend: "local" # use this to enable incremental syncing
   tables: 
