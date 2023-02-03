@@ -149,11 +149,11 @@ You will also need to have the `gcloud` command-line tool installed. See the off
 
 On the [BigQuery Cloud Console](https://console.cloud.google.com/bigquery), expand the project menu and select your project. Then, click the `Create dataset` button to create a new dataset.
 
-![Create BigQuery Dataset](/images/001-create-bigquery-dataset.png)
+![Create BigQuery Dataset](./images/001-create-bigquery-dataset.png)
 
 Give the dataset a name and click `Create`.
 
-![Create BigQuery Dataset](/images/002-create-bigquery-dataset.png)
+![Create BigQuery Dataset](./images/002-create-bigquery-dataset.png)
 
 ### Step 2. Log in to Google Cloud using gcloud
 
@@ -242,8 +242,8 @@ If anything goes wrong, you can inspect the `cloudquery.log` file to look for er
 
 Now that the data is in BigQuery, we can query it using the [BigQuery web console](https://console.cloud.google.com/bigquery). Click the dataset in the sidebar to open it. Then click on the newly created `simple_analytics_page_views` table, and click the `Query` button:
 
-![BigQuery Query](/images/003-query-bigquery-dataset.png)
+![BigQuery Query](./images/003-query-bigquery-dataset.png)
 
 Now we can run any query we like. In this example we simply explore 100 rows from the table:
 
-![BigQuery Query](/images/004-query-bigquery-dataset.png)
+![BigQuery Query](./images/004-query-bigquery-dataset.png)
