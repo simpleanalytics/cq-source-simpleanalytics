@@ -40,7 +40,7 @@ type Spec struct {
 	//  "1y": last year
 	// It is used to calculate start_time if it is not specified. If start_time is specified,
 	// duration is ignored.
-	PeriodStr string `json:"duration"`
+	PeriodStr string `json:"period"`
 }
 
 type WebsiteSpec struct {
