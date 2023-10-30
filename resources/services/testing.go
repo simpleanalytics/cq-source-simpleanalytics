@@ -1,15 +1,15 @@
-package resources
+package services
 
 import (
 	"net/http"
 	"net/http/httptest"
 	"os"
-	"path"
+	"path/filepath"
 	"testing"
 )
 
 func testServer(t *testing.T, filename string) *httptest.Server {
-	contents, err := os.ReadFile(path.Join("testdata", filename))
+	contents, err := os.ReadFile(filepath.Join("..", "..", "internal", "simpleanalytics", "testdata", filename))
 	if err != nil {
 		t.Fatalf("unexpected error reading testdata file: %v", err)
 	}

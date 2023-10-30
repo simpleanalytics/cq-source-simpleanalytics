@@ -1,5 +1,7 @@
 # Table: simple_analytics_page_views
 
+This table shows data for Simple Analytics Page Views.
+
 https://docs.simpleanalytics.com/api/export-data-points
 
 The composite primary key for this table is (**hostname**, **uuid**).
@@ -9,40 +11,38 @@ It supports incremental syncs.
 
 | Name          | Type          |
 | ------------- | ------------- |
-|_cq_source_name|String|
-|_cq_sync_time|Timestamp|
-|_cq_id|UUID|
-|_cq_parent_id|UUID|
-|metadata|JSON|
-|added_iso|Timestamp|
-|added_unix|Int|
-|browser_name|String|
-|browser_version|String|
-|country_code|String|
-|device_type|String|
-|document_referrer|String|
-|duration_seconds|Float|
-|hostname (PK)|String|
-|hostname_original|String|
-|is_robot|Bool|
-|is_unique|Bool|
-|lang_language|String|
-|lang_region|String|
-|os_name|String|
-|os_version|String|
-|path|String|
-|path_and_query|String|
-|query|String|
-|screen_height|Int|
-|screen_width|Int|
-|scrolled_percentage|Float|
-|session_id|String|
-|utm_campaign|String|
-|utm_content|String|
-|utm_medium|String|
-|utm_source|String|
-|utm_term|String|
-|uuid (PK)|String|
-|user_agent|String|
-|viewport_height|Int|
-|viewport_width|Int|
+|_cq_id|`uuid`|
+|_cq_parent_id|`uuid`|
+|metadata|`json`|
+|added_iso|`timestamp[us, tz=UTC]`|
+|added_unix|`int64`|
+|browser_name|`utf8`|
+|browser_version|`utf8`|
+|country_code|`utf8`|
+|device_type|`utf8`|
+|document_referrer|`utf8`|
+|duration_seconds|`float64`|
+|hostname (PK)|`utf8`|
+|hostname_original|`utf8`|
+|is_robot|`bool`|
+|is_unique|`bool`|
+|lang_language|`utf8`|
+|lang_region|`utf8`|
+|os_name|`utf8`|
+|os_version|`utf8`|
+|path|`utf8`|
+|path_and_query|`utf8`|
+|query|`utf8`|
+|screen_height|`int64`|
+|screen_width|`int64`|
+|scrolled_percentage|`float64`|
+|session_id|`utf8`|
+|utm_campaign|`utf8`|
+|utm_content|`utf8`|
+|utm_medium|`utf8`|
+|utm_source|`utf8`|
+|utm_term|`utf8`|
+|uuid (PK)|`utf8`|
+|user_agent|`utf8`|
+|viewport_height|`int64`|
+|viewport_width|`int64`|

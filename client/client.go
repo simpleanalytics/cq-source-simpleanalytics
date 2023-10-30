@@ -1,22 +1,17 @@
 package client
 
 import (
-	"context"
-	"fmt"
 	"strings"
 
-	"github.com/cloudquery/cq-source-simple-analytics/internal/simpleanalytics"
-	"github.com/cloudquery/plugin-sdk/backend"
-	"github.com/cloudquery/plugin-sdk/plugins/source"
-	"github.com/cloudquery/plugin-sdk/schema"
-	"github.com/cloudquery/plugin-sdk/specs"
+	"github.com/cloudquery/plugin-sdk/v4/state"
 	"github.com/rs/zerolog"
+	"github.com/simpleanalytics/cq-source-simple-analytics/internal/simpleanalytics"
 )
 
 type Client struct {
 	Logger   zerolog.Logger
 	SAClient *simpleanalytics.Client
-	Backend  backend.Backend
+	Backend  state.Client
 	Spec     Spec
 	Website  WebsiteSpec
 }
@@ -35,22 +30,11 @@ func (c *Client) withWebsite(website WebsiteSpec) *Client {
 	}
 }
 
-func New(_ context.Context, logger zerolog.Logger, s specs.Source, opts source.Options) (schema.ClientMeta, error) {
-	var pluginSpec Spec
-	if err := s.UnmarshalSpec(&pluginSpec); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal plugin spec: %w", err)
-	}
-	err := pluginSpec.Validate()
-	if err != nil {
-		return nil, fmt.Errorf("failed to validate plugin spec: %w", err)
-	}
-	pluginSpec.SetDefaults()
-
-	saClient := simpleanalytics.NewClient(pluginSpec.UserID, pluginSpec.APIKey)
+func New(logger zerolog.Logger, spec Spec, services *simpleanalytics.Client, bk state.Client) *Client {
 	return &Client{
 		Logger:   logger,
-		Backend:  opts.Backend,
-		Spec:     pluginSpec,
-		SAClient: saClient,
-	}, nil
+		SAClient: services,
+		Backend:  bk,
+		Spec:     spec,
+	}
 }
