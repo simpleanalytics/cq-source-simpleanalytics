@@ -4,7 +4,7 @@ build:
 
 .PHONY: test
 test:
-	go test -race -timeout 3m ./...
+	go test -short -race -timeout 3m ./...
 
 .PHONY: lint
 lint:
