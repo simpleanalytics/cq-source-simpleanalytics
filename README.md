@@ -183,3 +183,23 @@ make gen-docs
 
 Once the tag is pushed, a new GitHub Actions workflow will be triggered to build the release binaries and create the new release on GitHub.
 To customize the release notes, see the Go releaser [changelog configuration docs](https://goreleaser.com/customization/changelog/#changelog).
+
+### Publish a new version to the Cloudquery Hub
+
+After tagging a release, you can build and publish a new version to the [Cloudquery Hub](https://hub.cloudquery.io/) by running the following commands.
+Replace `v1.0.0` with the new version number.
+
+```bash
+# Use the README as main documentation
+cp README.md docs/overview.md
+# -m parameter adds release notes message, output is created in dist/ directory
+go run main.go package -m "Release v1.0.0" v1.0.0 .
+
+# Login to cloudquery hub and publish the new version
+cloudquery login -t simple-analytics
+cloudquery plugin publish --finalize
+```
+
+After publishing the new version, it will [show up](https://hub.cloudquery.io/plugins/source/simple-analytics/simple-analytics) in the [hub](https://hub.cloudquery.io/).
+
+For more information please refer to the official [Publishing a Plugin to the Hub](https://www.cloudquery.io/docs/developers/publishing-a-plugin-to-the-hub) guide.
