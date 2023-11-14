@@ -2,7 +2,6 @@ dist/
 vendor/
 bin/
 cq-source-simple-analytics
-docs/overview.md
 cloudquery
 cloudquery.log
 .DS_Store
