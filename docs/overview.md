@@ -10,7 +10,7 @@ spec:
   name: "simple-analytics"
   path: "simple-analytics/simple-analytics"
   registry: cloudquery
-  version: "VERSION_SOURCE_SIMPLE_ANALYTICS"
+  version: "VERSION_SOURCE_SIMPLE-ANALYTICS"
   # use this to enable incremental syncing
   # backend_options:
   #   table_name: "cq_state_simpleanalytics
