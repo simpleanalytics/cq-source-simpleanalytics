@@ -19,7 +19,7 @@ kind: source
 spec:
   name: "simple-analytics"
   path: "simple-analytics/simple-analytics"
-  version: "${VERSION}"
+  version: "v2.0.0"
   # use this to enable incremental syncing
   # backend_options:
   #   table_name: "cq_state_simpleanalytics
