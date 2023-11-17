@@ -1,24 +1,8 @@
 package plugin
 
-import (
-	"github.com/cloudquery/cq-source-simple-analytics/client"
-	"github.com/cloudquery/cq-source-simple-analytics/resources"
-	"github.com/cloudquery/plugin-sdk/plugins/source"
-	"github.com/cloudquery/plugin-sdk/schema"
-)
-
 var (
+	Name    = "simple-analytics"
+	Kind    = "source"
+	Team    = "simple-analytics"
 	Version = "development"
 )
-
-func Plugin() *source.Plugin {
-	return source.NewPlugin(
-		"simple-analytics",
-		Version,
-		schema.Tables{
-			resources.Events(),
-			resources.PageViews(),
-		},
-		client.New,
-	)
-}

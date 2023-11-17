@@ -20,7 +20,7 @@ const (
 
 func TestExportPageViews(t *testing.T) {
 	// read contents of testdata file
-	f := "testdata/pageviews.ndjson"
+	f := "testdata/page_views.ndjson"
 	contents, err := os.ReadFile(f)
 	if err != nil {
 		t.Fatalf("unexpected error reading testdata file: %v", err)

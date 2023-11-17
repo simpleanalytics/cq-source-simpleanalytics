@@ -41,6 +41,8 @@ type Spec struct {
 	// It is used to calculate start_time if it is not specified. If start_time is specified,
 	// duration is ignored.
 	PeriodStr string `json:"period"`
+
+	Concurrency int `json:"concurrency,omitempty"`
 }
 
 type WebsiteSpec struct {
@@ -90,6 +92,9 @@ func (s *Spec) SetDefaults() {
 	}
 	if s.EndDateStr == "" {
 		s.EndDateStr = time.Now().Format(AllowedTimeLayout)
+	}
+	if s.Concurrency < 1 {
+		s.Concurrency = 1000
 	}
 }
 

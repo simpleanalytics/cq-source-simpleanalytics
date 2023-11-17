@@ -1,10 +1,16 @@
 package main
 
 import (
-	"github.com/cloudquery/cq-source-simple-analytics/plugin"
-	"github.com/cloudquery/plugin-sdk/serve"
+	"context"
+	"log"
+
+	"github.com/cloudquery/plugin-sdk/v4/serve"
+	"github.com/simpleanalytics/cq-source-simple-analytics/resources/plugin"
 )
 
 func main() {
-	serve.Source(plugin.Plugin())
+	p := serve.Plugin(plugin.Plugin())
+	if err := p.Serve(context.Background()); err != nil {
+		log.Fatalf("failed to serve plugin: %v", err)
+	}
 }

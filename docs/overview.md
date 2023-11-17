@@ -1,24 +1,15 @@
-# CloudQuery Simple Analytics Source Plugin
-
-[![test](https://github.com/cloudquery/cq-source-simple-analytics/actions/workflows/test.yaml/badge.svg)](https://github.com/cloudquery/cq-source-simple-analytics/actions/workflows/test.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/cloudquery/cq-source-simple-analytics)](https://goreportcard.com/report/github.com/cloudquery/cq-source-simple-analytics)
-
-A [Simple Analytics](https://simpleanalytics.com/) source plugin for CloudQuery that loads raw page view and event data from Simple Analytics to any database, data warehouse or data lake supported by [CloudQuery](https://cloudquery.io/), such as PostgreSQL, BigQuery, Athena, and many more.
-
-## Links
-
- - [CloudQuery Quickstart Guide](https://cloudquery.io/docs/quickstart)
- - [Supported Tables](docs/tables/README.md)
+A [Simple Analytics](https://simpleanalytics.com/) source plugin for CloudQuery that loads raw page view and event data from Simple Analytics to any database, data warehouse or data lake supported by CloudQuery, such as PostgreSQL, BigQuery, Athena, and many more.
 
 ## Configuration
 
-The following source configuration file will sync all data points for `mywebsite.com` to a PostgreSQL database. See [CloudQuery Quickstart](https://cloudquery.io/docs/quickstart) for more information on how to configure the source and destination.
+The following source configuration file will sync all data points for `mywebsite.com` to a PostgreSQL database. See [Quickstart](https://cloudquery.io/docs/quickstart) for more information on how to configure the source and destination.
 
 ```yaml
 kind: source
 spec:
   name: "simple-analytics"
   path: "simple-analytics/simple-analytics"
+  registry: cloudquery
   version: "v2.0.0"
   # use this to enable incremental syncing
   # backend_options:

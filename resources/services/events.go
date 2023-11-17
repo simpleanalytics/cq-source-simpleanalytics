@@ -1,14 +1,15 @@
-package resources
+package services
 
 import (
 	"context"
 	"fmt"
 	"time"
 
-	"github.com/cloudquery/cq-source-simple-analytics/client"
-	"github.com/cloudquery/cq-source-simple-analytics/internal/simpleanalytics"
-	"github.com/cloudquery/plugin-sdk/schema"
-	"github.com/cloudquery/plugin-sdk/transformers"
+	"github.com/cloudquery/plugin-sdk/v4/schema"
+	"github.com/cloudquery/plugin-sdk/v4/transformers"
+	sdkTypes "github.com/cloudquery/plugin-sdk/v4/types"
+	"github.com/simpleanalytics/cq-source-simple-analytics/client"
+	"github.com/simpleanalytics/cq-source-simple-analytics/internal/simpleanalytics"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -29,7 +30,7 @@ func Events() *schema.Table {
 		Columns: []schema.Column{
 			{
 				Name:     "metadata",
-				Type:     schema.TypeJSON,
+				Type:     sdkTypes.ExtensionTypes.JSON,
 				Resolver: schema.PathResolver("Metadata"),
 			},
 		},
@@ -43,9 +44,10 @@ func fetchEvents(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 	// Set start time according to these priorities:
 	// 1. backend state
 	// 2. start_time from plugin spec (which defaults to 2018)
+	stateKey := c.ID() + ":" + tableEvents
 	start := c.Spec.StartTime()
 	if c.Backend != nil {
-		value, err := c.Backend.Get(ctx, tableEvents, c.ID())
+		value, err := c.Backend.GetKey(ctx, stateKey)
 		if err != nil {
 			return fmt.Errorf("failed to get cursor from backend: %w", err)
 		}
@@ -94,8 +96,7 @@ func fetchEvents(ctx context.Context, meta schema.ClientMeta, parent *schema.Res
 		// by using overwrite-delete-stale write mode, by de-duplicating in queries,
 		// or by running a post-processing step.
 		newCursor := end.Add(-24 * time.Hour).Format(client.AllowedTimeLayout)
-		err = c.Backend.Set(ctx, tableEvents, c.ID(), newCursor)
-		if err != nil {
+		if err := c.Backend.SetKey(ctx, stateKey, newCursor); err != nil {
 			return fmt.Errorf("failed to save cursor to backend: %w", err)
 		}
 		c.Logger.Info().Str("cursor", newCursor).Msg("cursor updated")

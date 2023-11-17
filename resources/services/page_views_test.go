@@ -1,9 +1,9 @@
-package resources
+package services
 
 import (
 	"testing"
 
-	"github.com/cloudquery/cq-source-simple-analytics/client"
+	"github.com/simpleanalytics/cq-source-simple-analytics/client"
 )
 
 func TestPageViews(t *testing.T) {
