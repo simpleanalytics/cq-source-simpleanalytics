@@ -18,7 +18,7 @@ The following source configuration file will sync all data points for `mywebsite
 kind: source
 spec:
   name: "simple-analytics"
-  path: "simple-analytics/simple-analytics"
+  path: "simpleanalytics/simpleanalytics"
   version: "v2.0.0"
   # use this to enable incremental syncing
   # backend_options:
